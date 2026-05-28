@@ -388,8 +388,8 @@ Instalacja CaptainHook + composer plugin (auto-install hook po `composer install
 
 #### Automated
 
-- [ ] 4.1 Workflow file istnieje: `test -f .github/workflows/ci.yml`
-- [ ] 4.2 YAML syntactically valid (yamllint lub equiv)
+- [x] 4.1 Workflow file istnieje: `test -f .github/workflows/ci.yml`
+- [x] 4.2 YAML syntactically valid (Symfony Yaml::parseFile → OK jobs: phpstan, codecept)
 - [ ] 4.3 Push do brancha + open PR triggeruje workflow (2 jobs running)
 - [ ] 4.4 Oba joby zielone: `gh run list --workflow=ci.yml --limit=1` raportuje `success`
 - [ ] 4.5 `gh pr checks <PR>` listuje `phpstan` i `codecept` jako passed
