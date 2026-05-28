@@ -1,0 +1,22 @@
+# Codeception Acceptance Test Suite Configuration
+#
+# User-facing acceptance scenarios. Laravel module dispatches HTTP requests
+# without WebDriver (faster than Selenium for MVP). Db cleanup rolls back
+# between tests.
+
+actor: AcceptanceTester
+modules:
+    enabled:
+        - Asserts
+        - Laravel:
+            environment_file: .env.testing
+            run_database_migrations: true
+        - Db:
+            dsn: 'pgsql:host=db;dbname=podworko_test_db'
+            user: 'podworko_user'
+            password: 'podworko_123'
+            cleanup: true
+step_decorators:
+    - Codeception\Step\ConditionalAssertion
+    - Codeception\Step\TryTo
+    - Codeception\Step\Retry

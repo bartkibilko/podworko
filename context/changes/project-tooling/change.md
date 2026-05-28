@@ -5,6 +5,7 @@ title: Project tooling — PHPStan/Larastan level 5 + Codeception 3 suites + Pin
 status: implementing
 created: 2026-05-28
 updated: 2026-05-28
+phase_1_sha: ff38b39
 prerequisites: []
 unlocks: [auth-scaffold-magic-link, domain-primitives, cost-settlement-single-payer]
 ---

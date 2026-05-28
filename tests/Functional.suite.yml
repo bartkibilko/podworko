@@ -1,0 +1,16 @@
+# Codeception Functional Test Suite Configuration
+#
+# Domain logic tests with framework boot but without HTTP layer.
+
+actor: FunctionalTester
+modules:
+    enabled:
+        - Asserts
+        - Laravel:
+            environment_file: .env.testing
+        - Db:
+            dsn: 'pgsql:host=db;dbname=podworko_test_db'
+            user: 'podworko_user'
+            password: 'podworko_123'
+            cleanup: true
+step_decorators: ~

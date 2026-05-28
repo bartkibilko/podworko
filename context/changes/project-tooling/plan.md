@@ -340,34 +340,34 @@ Instalacja CaptainHook + composer plugin (auto-install hook po `composer install
 
 #### Automated
 
-- [x] 1.1 `composer require` przeszło bez konfliktów: brak `php composer.phar` errors
-- [x] 1.2 `phpstan.neon` istnieje w root: `test -f phpstan.neon`
-- [x] 1.3 PHPStan analiza zwraca exit 0: `docker compose exec app vendor/bin/phpstan analyse --memory-limit=512M`
-- [x] 1.4 `composer phpstan` script działa: `docker compose exec app composer phpstan`
+- [x] 1.1 `composer require` przeszło bez konfliktów: brak `php composer.phar` errors — ff38b39
+- [x] 1.2 `phpstan.neon` istnieje w root: `test -f phpstan.neon` — ff38b39
+- [x] 1.3 PHPStan analiza zwraca exit 0: `docker compose exec app vendor/bin/phpstan analyse --memory-limit=512M` — ff38b39
+- [x] 1.4 `composer phpstan` script działa: `docker compose exec app composer phpstan` — ff38b39
 
 #### Manual
 
-- [x] 1.5 Output PHPStan zawiera `[OK] No errors`
-- [x] 1.6 `cat phpstan.neon` matchuje `coding-rules.md:102-115` (no drift)
-- [x] 1.7 `composer show --installed | grep -E 'phpstan|larastan'` listuje obie paczki
+- [x] 1.5 Output PHPStan zawiera `[OK] No errors` — ff38b39
+- [x] 1.6 `cat phpstan.neon` matchuje `coding-rules.md:102-115` (no drift) — ff38b39
+- [x] 1.7 `composer show --installed | grep -E 'phpstan|larastan'` listuje obie paczki — ff38b39
 
 ### Phase 2: Testing framework (Codeception)
 
 #### Automated
 
-- [ ] 2.1 Codeception zainstalowany: `vendor/bin/codecept --version` zwraca version string
-- [ ] 2.2 Suite configs istnieją: `test -f tests/Unit.suite.yml && test -f tests/Functional.suite.yml && test -f tests/Acceptance.suite.yml`
-- [ ] 2.3 Laravel-default tests usunięte: `test ! -f tests/TestCase.php && test ! -f tests/Feature/ExampleTest.php && test ! -f tests/Unit/ExampleTest.php`
-- [ ] 2.4 `codecept run` przeszło zielono: exit 0
-- [ ] 2.5 `composer test` wywołuje codecept: exit 0
-- [ ] 2.6 PHPUnit nie jest direct dep: `composer show --installed --direct | grep phpunit/phpunit` empty
-- [ ] 2.7 PHPStan z Phase 1 nadal zielony po cleanup tests
+- [x] 2.1 Codeception zainstalowany: `vendor/bin/codecept --version` zwraca version string
+- [x] 2.2 Suite configs istnieją: `test -f tests/Unit.suite.yml && test -f tests/Functional.suite.yml && test -f tests/Acceptance.suite.yml`
+- [x] 2.3 Laravel-default tests usunięte: `test ! -f tests/TestCase.php && test ! -f tests/Feature/ExampleTest.php && test ! -f tests/Unit/ExampleTest.php`
+- [x] 2.4 `codecept run` przeszło zielono: exit 0
+- [x] 2.5 `composer test` wywołuje codecept: exit 0
+- [x] 2.6 PHPUnit nie jest direct dep: `composer show --installed --direct | grep phpunit/phpunit` empty
+- [x] 2.7 PHPStan z Phase 1 nadal zielony po cleanup tests
 
 #### Manual
 
-- [ ] 2.8 Output `codecept run` listuje 3 suites i 3 passed smoke tests
-- [ ] 2.9 `tests/` ma czystą strukturę bez Laravel-default residuów
-- [ ] 2.10 `composer test` w terminalu produkuje czytelny Codeception output
+- [x] 2.8 Output `codecept run` listuje 3 suites i 3 passed smoke tests
+- [x] 2.9 `tests/` ma czystą strukturę bez Laravel-default residuów
+- [x] 2.10 `composer test` w terminalu produkuje czytelny Codeception output
 
 ### Phase 3: Code style automation (Pint + CaptainHook pre-commit)
 
