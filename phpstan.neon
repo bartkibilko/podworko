@@ -10,4 +10,4 @@ parameters:
         - tests
     excludePaths:
         - bootstrap/cache
-        - tests/Support/_generated
+        - tests/Support/_generated (?)
