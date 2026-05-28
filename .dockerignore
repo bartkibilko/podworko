@@ -1,0 +1,55 @@
+# Version control
+.git
+.gitignore
+.gitattributes
+
+# Dependencies — installed in builder stage of Dockerfile
+node_modules
+vendor
+
+# Local env — Railway sets variables via its own mechanism
+.env
+.env.*.local
+
+# Dev infrastructure — Railway uses docker/railway/* only
+docker-compose.yml
+docker/app
+docker/web
+database/database.sqlite
+
+# Agent / skill / context — not needed at runtime
+.claude
+context
+skills-lock.json
+
+# Tests + dev tooling
+tests
+phpunit.xml
+.phpunit.result.cache
+.phpactor.json
+.phpstan.cache
+
+# Editor
+.editorconfig
+.idea
+.vscode
+
+# CI / docs
+.github
+CLAUDE.md
+README.md
+
+# Storage runtime data (regenerated at runtime; permissions handled in Dockerfile)
+storage/logs/*
+!storage/logs/.gitignore
+storage/framework/cache/data/*
+!storage/framework/cache/data/.gitignore
+storage/framework/sessions/*
+!storage/framework/sessions/.gitignore
+storage/framework/views/*
+!storage/framework/views/.gitignore
+storage/framework/testing/*
+!storage/framework/testing/.gitignore
+
+# Bootstrap cache (regenerated at runtime)
+bootstrap/cache/*.php
