@@ -373,16 +373,16 @@ Instalacja CaptainHook + composer plugin (auto-install hook po `composer install
 
 #### Automated
 
-- [ ] 3.1 CaptainHook zainstalowany: `vendor/bin/captainhook --version` zwraca version
-- [ ] 3.2 `captainhook.json` istnieje
-- [ ] 3.3 Hook wpięty w git: `test -x .git/hooks/pre-commit`
-- [ ] 3.4 Pint baseline: `vendor/bin/pint --test` exit 0
+- [x] 3.1 CaptainHook zainstalowany: `vendor/bin/captainhook --version` zwraca version
+- [x] 3.2 `captainhook.json` istnieje
+- [x] 3.3 Hook wpięty w git: `test -x .git/hooks/pre-commit`
+- [x] 3.4 Pint baseline: `vendor/bin/pint --test` exit 0
 
 #### Manual
 
 - [ ] 3.5 Test pozytywny: brudny commit autofix-owany przez hook + commit aborted dla re-stage
 - [ ] 3.6 Test negatywny: czysty commit przechodzi pod 1s
-- [ ] 3.7 `cat captainhook.json` zawiera `docker compose exec -T app vendor/bin/pint --dirty` literal
+- [x] 3.7 `cat captainhook.json` zawiera `docker compose exec -T app vendor/bin/pint --dirty` literal
 
 ### Phase 4: CI gate (GitHub Actions)
 

@@ -1,0 +1,14 @@
+{
+    "config": {
+        "verbosity": "normal",
+        "fail-on-first-error": true
+    },
+    "pre-commit": {
+        "enabled": true,
+        "actions": [
+            {
+                "action": "docker compose exec -T app vendor/bin/pint --dirty"
+            }
+        ]
+    }
+}
