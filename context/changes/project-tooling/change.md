@@ -7,6 +7,8 @@ created: 2026-05-28
 updated: 2026-05-28
 phase_1_sha: ff38b39
 phase_2_sha: ea6c476
+phase_2_followup_sha: 76cc5cd
+phase_3_sha: f9b1e47
 prerequisites: []
 unlocks: [auth-scaffold-magic-link, domain-primitives, cost-settlement-single-payer]
 ---

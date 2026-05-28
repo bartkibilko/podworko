@@ -7,7 +7,10 @@
         "enabled": true,
         "actions": [
             {
-                "action": "docker compose exec -T app vendor/bin/pint --dirty"
+                "action": "docker compose exec -T app vendor/bin/pint --test --dirty",
+                "options": {
+                    "fail-message": "Pint found style issues in staged files. Run: docker compose exec app vendor/bin/pint --dirty, then re-stage with git add."
+                }
             }
         ]
     }
