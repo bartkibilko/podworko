@@ -32,7 +32,7 @@ services:
     container_name: podworko-db
     image: postgres:17.7
     ports:
-      - "5442:5432"
+      - "5443:5432"
     environment:
       POSTGRES_DB: ${DB_DATABASE}
       POSTGRES_USER: ${DB_USERNAME}
