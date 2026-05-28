@@ -355,19 +355,19 @@ Instalacja CaptainHook + composer plugin (auto-install hook po `composer install
 
 #### Automated
 
-- [x] 2.1 Codeception zainstalowany: `vendor/bin/codecept --version` zwraca version string
-- [x] 2.2 Suite configs istnieją: `test -f tests/Unit.suite.yml && test -f tests/Functional.suite.yml && test -f tests/Acceptance.suite.yml`
-- [x] 2.3 Laravel-default tests usunięte: `test ! -f tests/TestCase.php && test ! -f tests/Feature/ExampleTest.php && test ! -f tests/Unit/ExampleTest.php`
-- [x] 2.4 `codecept run` przeszło zielono: exit 0
-- [x] 2.5 `composer test` wywołuje codecept: exit 0
-- [x] 2.6 PHPUnit nie jest direct dep: `composer show --installed --direct | grep phpunit/phpunit` empty
-- [x] 2.7 PHPStan z Phase 1 nadal zielony po cleanup tests
+- [x] 2.1 Codeception zainstalowany: `vendor/bin/codecept --version` zwraca version string — ea6c476
+- [x] 2.2 Suite configs istnieją: `test -f tests/Unit.suite.yml && test -f tests/Functional.suite.yml && test -f tests/Acceptance.suite.yml` — ea6c476
+- [x] 2.3 Laravel-default tests usunięte: `test ! -f tests/TestCase.php && test ! -f tests/Feature/ExampleTest.php && test ! -f tests/Unit/ExampleTest.php` — ea6c476
+- [x] 2.4 `codecept run` przeszło zielono: exit 0 — ea6c476
+- [x] 2.5 `composer test` wywołuje codecept: exit 0 — ea6c476
+- [x] 2.6 PHPUnit nie jest direct dep: `composer show --installed --direct | grep phpunit/phpunit` empty — ea6c476
+- [x] 2.7 PHPStan z Phase 1 nadal zielony po cleanup tests — ea6c476
 
 #### Manual
 
-- [x] 2.8 Output `codecept run` listuje 3 suites i 3 passed smoke tests
-- [x] 2.9 `tests/` ma czystą strukturę bez Laravel-default residuów
-- [x] 2.10 `composer test` w terminalu produkuje czytelny Codeception output
+- [x] 2.8 Output `codecept run` listuje 3 suites i 3 passed smoke tests — ea6c476
+- [x] 2.9 `tests/` ma czystą strukturę bez Laravel-default residuów — ea6c476
+- [x] 2.10 `composer test` w terminalu produkuje czytelny Codeception output — ea6c476
 
 ### Phase 3: Code style automation (Pint + CaptainHook pre-commit)
 

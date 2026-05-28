@@ -9,8 +9,8 @@ modules:
         - Laravel:
             environment_file: .env.testing
         - Db:
-            dsn: 'pgsql:host=db;dbname=podworko_test_db'
-            user: 'podworko_user'
-            password: 'podworko_123'
+            dsn: 'pgsql:host=%DB_HOST%;dbname=%DB_DATABASE%'
+            user: '%DB_USERNAME%'
+            password: '%DB_PASSWORD%'
             cleanup: true
 step_decorators: ~
