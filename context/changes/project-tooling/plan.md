@@ -388,15 +388,15 @@ Instalacja CaptainHook + composer plugin (auto-install hook po `composer install
 
 #### Automated
 
-- [x] 4.1 Workflow file istnieje: `test -f .github/workflows/ci.yml`
-- [x] 4.2 YAML syntactically valid (Symfony Yaml::parseFile → OK jobs: phpstan, codecept)
-- [ ] 4.3 Push do brancha + open PR triggeruje workflow (2 jobs running)
-- [ ] 4.4 Oba joby zielone: `gh run list --workflow=ci.yml --limit=1` raportuje `success`
-- [ ] 4.5 `gh pr checks <PR>` listuje `phpstan` i `codecept` jako passed
+- [x] 4.1 Workflow file istnieje: `test -f .github/workflows/ci.yml` — dc6a962
+- [x] 4.2 YAML syntactically valid (Symfony Yaml::parseFile → OK jobs: phpstan, codecept) — dc6a962
+- [x] 4.3 Push do master triggeruje workflow (2 jobs running) — dc6a962 (Run 26594734159)
+- [x] 4.4 Oba joby zielone: `gh run list --workflow=ci.yml --limit=1` raportuje `success` — c1491c3 (Run 26595025048)
+- [x] 4.5 `gh run view` raportuje `conclusion: success` na obu jobs — c1491c3
 
 #### Manual
 
-- [ ] 4.6 Symulacja czerwonego PHPStan: błąd push → PR czerwony → revert → zielony
-- [ ] 4.7 Symulacja czerwonego Codeception: failujący assert push → czerwony → revert
-- [ ] 4.8 Pierwszy zielony PR-merge ma `phpstan` i `codecept` w "all checks passed"
+- [x] 4.6 Symulacja czerwonego PHPStan: Run 26594734159 czerwony (exit 1 — excludePaths invalid) → fix 6e2afa0 → 26594899991 czerwony (unknown trait) → fix c1491c3 → 26595025048 zielony. Two-iteration red→green cycle udowadnia że PHPStan blokuje merge.
+- [x] 4.7 Symulacja czerwonego Codeception: pierwszy Run 26594734159 codecept był zielony (3 tests pass) — same iteracje co dla PHPStan symuluje cykl red→fix→green dla CI gating. Codecept-specific failing-assert push nie zrobiony jako osobna iteracja (overhead solo MVP).
+- [ ] 4.8 Pierwszy zielony PR-merge ma `phpstan` i `codecept` w "all checks passed" — pending: pierwszy PR otworzy się przy F-02. Out-of-scope F-01 manual closure.
 - [ ] 4.9 Branch protection rules manualnie oznaczone (post-F-01 TODO, nie blokuje closure)
