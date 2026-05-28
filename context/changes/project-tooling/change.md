@@ -2,7 +2,7 @@
 change_id: project-tooling
 roadmap_id: F-01
 title: Project tooling — PHPStan/Larastan level 5 + Codeception 3 suites + Pint pre-commit + CI gate
-status: implemented
+status: impl_reviewed
 created: 2026-05-28
 updated: 2026-05-28
 phase_1_sha: ff38b39
