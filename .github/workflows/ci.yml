@@ -66,5 +66,13 @@ jobs:
       - name: Override DB_HOST for CI Postgres service (localhost vs docker `db`)
         run: sed -i 's/^DB_HOST=.*/DB_HOST=localhost/' .env.testing
 
+      - name: Setup Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Build front-end assets (Vite manifest required by @vite in Acceptance views)
+        run: npm install --no-audit --no-fund && npm run build
+
       - name: Run Codeception
         run: vendor/bin/codecept run

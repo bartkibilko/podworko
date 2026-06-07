@@ -40,7 +40,8 @@ final class MagicLinkController extends Controller
 
         $user = User::firstOrCreate(
             ['email' => $email],
-            ['name' => Str::before($email, '@')],
+            // Placeholder display name from the local-part, capped to the column.
+            ['name' => Str::limit(Str::before($email, '@'), 255, '')],
         );
 
         $token = $magicLink->issueFor($email);
@@ -51,12 +52,24 @@ final class MagicLinkController extends Controller
     }
 
     /**
+     * Show the confirm page for a magic link. Consumption happens on POST so
+     * link prefetchers and mail scanners cannot burn the single-use token.
+     */
+    public function confirm(Request $request): View
+    {
+        return view('auth.verify', [
+            'email' => (string) $request->query('email', ''),
+            'token' => (string) $request->query('token', ''),
+        ]);
+    }
+
+    /**
      * Consume a link and open a session.
      */
     public function verify(Request $request, MagicLink $magicLink): RedirectResponse
     {
-        $email = (string) $request->query('email', '');
-        $token = (string) $request->query('token', '');
+        $email = (string) $request->input('email', '');
+        $token = (string) $request->input('token', '');
 
         if (! $magicLink->consume($email, $token)) {
             return redirect()->route('login')->withErrors([

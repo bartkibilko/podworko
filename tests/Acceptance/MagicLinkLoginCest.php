@@ -68,13 +68,16 @@ final class MagicLinkLoginCest
         $token = 'valid-known-token';
         $this->requestLinkWithKnownToken($I, $email, $token);
 
+        // GET shows the confirm page; the POST consumes the token and logs in.
         $I->amOnPage($this->verifyUrl($email, $token));
+        $I->submitForm('form', []);
         $I->seeAuthentication();
         $I->seeCurrentUrlEquals('/dashboard');
         $I->dontSeeRecord('magic_links', ['email' => $email]);
 
-        // Second visit with the same (now deleted) token is rejected.
+        // Second attempt with the same (now deleted) token is rejected.
         $I->amOnPage($this->verifyUrl($email, $token));
+        $I->submitForm('form', []);
         $I->seeCurrentUrlEquals('/login');
     }
 
@@ -88,6 +91,7 @@ final class MagicLinkLoginCest
         Carbon::setTestNow(Carbon::now()->addMinutes(MagicLink::TTL_MINUTES + 1));
 
         $I->amOnPage($this->verifyUrl($email, $token));
+        $I->submitForm('form', []);
         $I->dontSeeAuthentication();
         $I->seeCurrentUrlEquals('/login');
     }

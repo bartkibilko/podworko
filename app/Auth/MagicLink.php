@@ -46,24 +46,18 @@ final class MagicLink
      */
     public function consume(string $email, string $token): bool
     {
-        $row = DB::table(self::TABLE)->where('email', $email)->first();
+        $cutoff = Carbon::now()->subMinutes(self::TTL_MINUTES);
 
-        if ($row === null) {
-            return false;
-        }
+        // Atomic single-use: the row is deleted only if it matches the hash AND
+        // is still within its TTL, and the affected-row count is the source of
+        // truth. Two concurrent requests cannot both succeed on one token,
+        // because exactly one DELETE can affect the row.
+        $deleted = DB::table(self::TABLE)
+            ->where('email', $email)
+            ->where('token', hash('sha256', $token))
+            ->where('created_at', '>=', $cutoff)
+            ->delete();
 
-        if (! hash_equals((string) $row->token, hash('sha256', $token))) {
-            return false;
-        }
-
-        if (Carbon::parse($row->created_at)->addMinutes(self::TTL_MINUTES)->isPast()) {
-            return false;
-        }
-
-        // Single-use: only after every check passes, so a failed attempt never
-        // destroys a still-valid token.
-        DB::table(self::TABLE)->where('email', $email)->delete();
-
-        return true;
+        return $deleted > 0;
     }
 }

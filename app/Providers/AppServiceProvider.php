@@ -25,12 +25,17 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Throttle magic-link requests per email + IP to blunt email-bombing
-        // on this load-bearing endpoint. Applied via `throttle:magic-link`.
-        RateLimiter::for('magic-link', function (Request $request): Limit {
+        // Throttle magic-link requests to blunt email-bombing on this
+        // load-bearing endpoint. Two limits: a tight per-email cap, plus a
+        // coarser per-IP cap so rotating the email field can't bypass it.
+        // Applied via `throttle:magic-link`.
+        RateLimiter::for('magic-link', function (Request $request): array {
             $email = Str::lower((string) $request->input('email'));
 
-            return Limit::perMinutes(15, 5)->by($email.'|'.$request->ip());
+            return [
+                Limit::perMinutes(15, 5)->by($email.'|'.$request->ip()),
+                Limit::perMinutes(15, 20)->by('ip|'.$request->ip()),
+            ];
         });
     }
 }

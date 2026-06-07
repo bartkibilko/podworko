@@ -286,6 +286,26 @@ Single additive migration (`create_magic_links_table`); no existing data to migr
 - Tech stack: `context/foundation/tech-stack.md` — Fortify mention (superseded here by hand-rolled decision), `has_auth: true`
 - Pattern reference: Laravel `password_reset_tokens` broker (single-use + TTL token shape)
 
+## Addendum — deviations during implementation & review
+
+Recorded after the fact so the plan stays the source of truth (see `reviews/impl-review.md`).
+
+**Implementation-time deviations (not in the original Changes Required):**
+- Extra migration `make_password_nullable_on_users` — `firstOrCreate` without a password would violate NOT NULL; passwordless makes nullable the honest schema.
+- `magic_links.email` is the PRIMARY KEY (one active token per email) rather than a non-unique index — matches the `updateOrInsert` design.
+- `pint.json` added to exclude the gitignored `tests/Support/_generated` Codeception actors from `pint --test`.
+- Test-infra: `Functional`/`Acceptance` suites enable `run_database_migrations`; Acceptance drops the Db module and uses `cleanup: false` + per-test truncation; `.env.testing` uses `database` cache + session. Reason: the magic-link flow spans two requests and the in-process Codeception Laravel module re-inits per request, so array drivers / per-test transactions break cross-request visibility.
+- Route names `login.store`, `login.verify` (GET confirm), `login.verify.store` (POST consume), `login.sent`.
+
+**Changes applied during impl-review triage:**
+- F1: `MagicLink::consume()` made atomic (single conditional DELETE; affected-row count is the source of truth).
+- F2: token is consumed on a POST (`login.verify.store`) behind a GET confirm page, so link prefetchers / mail scanners can't burn the single-use token.
+- F3: added a coarser per-IP rate limit alongside the per-email one.
+- F4: documented in `infrastructure.md` that prod must use a shared `CACHE_STORE`/`SESSION_DRIVER` (already the `.env.example` default).
+- F5: softened the link-sent copy to a direct, non-misleading message.
+- F7: derived display name capped to the column length.
+- F8: auth views moved to `@vite` + Tailwind v4; assets built in a node container; CI codecept job now builds assets (`public/build` manifest required by `@vite`).
+
 ## Progress
 
 > Convention: `- [ ]` pending, `- [x]` done. Append ` — <commit sha>` when a step lands. Do not rename step titles. See `references/progress-format.md`.

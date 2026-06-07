@@ -1,7 +1,7 @@
 ---
 change_id: auth-scaffold-magic-link
 title: Auth scaffold magic link
-status: implemented
+status: impl_reviewed
 created: 2026-06-07
 updated: 2026-06-07
 

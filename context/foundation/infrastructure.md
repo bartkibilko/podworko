@@ -149,6 +149,7 @@ railway domain                                      # generuje *.up.railway.app 
 1. **`docker/app/Dockerfile` rozszerzenie** — dodać `supervisord` + nginx w tym samym obrazie (jeśli wybierasz opcję (a) z kroku 4). Reference: https://docs.railway.com/guides/laravel
 2. **`Procfile` lub `railway.json`** — opcjonalny IaC dla Railway (równoważnik docker-compose dla Railway-side configuration)
 3. **`.env.production`** — Laravel `APP_ENV=production` + cache flags (`APP_KEY` z `php artisan key:generate --show` zalany do Railway variables, nie commitowany)
+4. **Trwały `CACHE_STORE` i `SESSION_DRIVER`** — na Railway muszą wskazywać współdzielony store (`database` — domyślne w `.env.example` — lub `redis`), nigdy `array`/`file`. Magic-link RateLimiter (F-02) trzyma limity między workerami php-fpm tylko przez współdzielony cache; przy `array` throttle po cichu przestaje działać. To samo dotyczy trwałości sesji logowania.
 
 ## Out of Scope
 
