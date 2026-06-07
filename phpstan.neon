@@ -11,3 +11,13 @@ parameters:
     excludePaths:
         - bootstrap/cache
         - tests/Support/_generated (?)
+    ignoreErrors:
+        # Codeception's generated actor copies the module's `@param Authenticatable`
+        # docblock unqualified, so PHPStan resolves it to a phantom
+        # Tests\Support\_generated\Authenticatable. App\Models\User genuinely
+        # implements Illuminate\Contracts\Auth\Authenticatable — this is a
+        # generation quirk, not a real type error. reportUnmatched:false because
+        # whether it surfaces depends on PHPStan's handling of the excluded actor.
+        -
+            message: '#Parameter \#1 \$user of method Tests\\Support\\AcceptanceTester::amLoggedAs\(\) expects array\|.*Authenticatable, App\\Models\\User given#'
+            reportUnmatched: false
