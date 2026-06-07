@@ -10,13 +10,13 @@ modules:
         - Asserts
         - Laravel:
             environment_file: .env.testing
-            # run_database_migrations: re-enable when first domain migration lands (F-03)
-            run_database_migrations: false
-        - Db:
-            dsn: 'pgsql:host=%DB_HOST%;dbname=%DB_DATABASE%'
-            user: '%DB_USERNAME%'
-            password: '%DB_PASSWORD%'
-            cleanup: true
+            # First domain migration lands in F-02 (magic_links).
+            # cleanup: false → writes COMMIT, so a row created in one request is
+            # visible to the next request (the magic-link flow spans two requests).
+            # The transactional default isolated each request on its own connection,
+            # breaking that. Tests clean their own tables in _after instead.
+            run_database_migrations: true
+            cleanup: false
 step_decorators:
     - Codeception\Step\ConditionalAssertion
     - Codeception\Step\TryTo

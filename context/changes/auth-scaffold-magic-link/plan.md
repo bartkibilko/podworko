@@ -309,26 +309,26 @@ Single additive migration (`create_magic_links_table`); no existing data to migr
 
 #### Automated
 
-- [x] 2.1 Static analysis clean: `phpstan analyse --memory-limit=512M`
-- [x] 2.2 Code style clean: `pint --test`
-- [x] 2.3 Routes resolve: `php artisan route:list`
+- [x] 2.1 Static analysis clean: `phpstan analyse --memory-limit=512M` — 0a7dec3
+- [x] 2.2 Code style clean: `pint --test` — 0a7dec3
+- [x] 2.3 Routes resolve: `php artisan route:list` — 0a7dec3
 
 #### Manual
 
-- [x] 2.4 Full browser click-through: `/login` → email → link from log → `/dashboard` logged in
-- [x] 2.5 Layout usable at 320px width
-- [x] 2.6 Logout returns to `/login`; `/dashboard` no longer reachable
-- [x] 2.7 Guest hitting `/dashboard` is redirected to `/login`
+- [x] 2.4 Full browser click-through: `/login` → email → link from log → `/dashboard` logged in — 0a7dec3
+- [x] 2.5 Layout usable at 320px width — 0a7dec3
+- [x] 2.6 Logout returns to `/login`; `/dashboard` no longer reachable — 0a7dec3
+- [x] 2.7 Guest hitting `/dashboard` is redirected to `/login` — 0a7dec3
 
 ### Phase 3: Acceptance suite + green gate
 
 #### Automated
 
-- [ ] 3.1 Full suite passes: `codecept run`
-- [ ] 3.2 Static analysis clean: `phpstan analyse --memory-limit=512M`
-- [ ] 3.3 Code style clean: `pint --test`
+- [x] 3.1 Full suite passes: `codecept run`
+- [x] 3.2 Static analysis clean: `phpstan analyse --memory-limit=512M`
+- [x] 3.3 Code style clean: `pint --test`
 
 #### Manual
 
 - [ ] 3.4 CI run on the PR is green (phpstan + codecept jobs)
-- [ ] 3.5 No regression in the `/` welcome route
+- [x] 3.5 No regression in the `/` welcome route
