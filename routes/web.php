@@ -3,6 +3,8 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\Auth\MagicLinkController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\NeighbourhoodController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -21,6 +23,11 @@ Route::post('/login/verify', [MagicLinkController::class, 'verify'])->name('logi
 Route::view('/login/sent', 'auth.link-sent')->name('login.sent');
 
 Route::middleware('auth')->group(function () {
-    Route::view('/dashboard', 'dashboard')->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::post('/logout', [MagicLinkController::class, 'destroy'])->name('logout');
+
+    // S-01: founder creates a neighbourhood (name → code preview/regenerate → save).
+    Route::get('/neighbourhoods/create', [NeighbourhoodController::class, 'create'])->name('neighbourhoods.create');
+    Route::post('/neighbourhoods/preview', [NeighbourhoodController::class, 'preview'])->name('neighbourhoods.preview');
+    Route::post('/neighbourhoods', [NeighbourhoodController::class, 'store'])->name('neighbourhoods.store');
 });
