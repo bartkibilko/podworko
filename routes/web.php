@@ -15,3 +15,9 @@ Route::post('/login', [MagicLinkController::class, 'store'])
     ->middleware('throttle:magic-link')
     ->name('login.store');
 Route::get('/login/verify', [MagicLinkController::class, 'verify'])->name('login.verify');
+Route::view('/login/sent', 'auth.link-sent')->name('login.sent');
+
+Route::middleware('auth')->group(function () {
+    Route::view('/dashboard', 'dashboard')->name('dashboard');
+    Route::post('/logout', [MagicLinkController::class, 'destroy'])->name('logout');
+});

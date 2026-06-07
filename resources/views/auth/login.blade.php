@@ -1,28 +1,19 @@
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Logowanie — Podwórko</title>
-</head>
-<body>
-    <main>
-        <h1>Zaloguj się do Podwórka</h1>
+@extends('layouts.auth')
 
-        @if (session('status'))
-            <p role="status">{{ session('status') }}</p>
-        @endif
+@section('title', 'Logowanie — Podwórko')
 
-        @error('email')
-            <p role="alert">{{ $message }}</p>
-        @enderror
+@section('content')
+    <h1>Zaloguj się do Podwórka</h1>
 
-        <form method="POST" action="{{ route('login.store') }}">
-            @csrf
-            <label for="email">Adres email</label>
-            <input id="email" name="email" type="email" value="{{ old('email') }}" required autofocus>
-            <button type="submit">Wyślij link do logowania</button>
-        </form>
-    </main>
-</body>
-</html>
+    @error('email')
+        <p class="msg msg-error" role="alert">{{ $message }}</p>
+    @enderror
+
+    <form method="POST" action="{{ route('login.store') }}">
+        @csrf
+        <label for="email">Adres email</label>
+        <input id="email" name="email" type="email" value="{{ old('email') }}"
+               required autofocus inputmode="email" autocomplete="email">
+        <button type="submit">Wyślij link do logowania</button>
+    </form>
+@endsection

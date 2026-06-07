@@ -294,31 +294,31 @@ Single additive migration (`create_magic_links_table`); no existing data to migr
 
 #### Automated
 
-- [x] 1.1 Migration applies cleanly: `php artisan migrate`
-- [x] 1.2 Functional test for token lifecycle passes: `codecept run Functional`
-- [x] 1.3 Static analysis clean: `phpstan analyse --memory-limit=512M`
-- [x] 1.4 Code style clean: `pint --test`
+- [x] 1.1 Migration applies cleanly: `php artisan migrate` — 8aa4606
+- [x] 1.2 Functional test for token lifecycle passes: `codecept run Functional` — 8aa4606
+- [x] 1.3 Static analysis clean: `phpstan analyse --memory-limit=512M` — 8aa4606
+- [x] 1.4 Code style clean: `pint --test` — 8aa4606
 
 #### Manual
 
-- [x] 1.5 POST /login writes a `magic_links` row and logs a `/login/verify` URL
-- [x] 1.6 Visiting the URL within 15 min creates/logs in the user and deletes the row
-- [x] 1.7 Second visit to the same URL fails (single-use)
+- [x] 1.5 POST /login writes a `magic_links` row and logs a `/login/verify` URL — 8aa4606
+- [x] 1.6 Visiting the URL within 15 min creates/logs in the user and deletes the row — 8aa4606
+- [x] 1.7 Second visit to the same URL fails (single-use) — 8aa4606
 
 ### Phase 2: Auth UI + middleware + Role enum
 
 #### Automated
 
-- [ ] 2.1 Static analysis clean: `phpstan analyse --memory-limit=512M`
-- [ ] 2.2 Code style clean: `pint --test`
-- [ ] 2.3 Routes resolve: `php artisan route:list`
+- [x] 2.1 Static analysis clean: `phpstan analyse --memory-limit=512M`
+- [x] 2.2 Code style clean: `pint --test`
+- [x] 2.3 Routes resolve: `php artisan route:list`
 
 #### Manual
 
-- [ ] 2.4 Full browser click-through: `/login` → email → link from log → `/dashboard` logged in
-- [ ] 2.5 Layout usable at 320px width
-- [ ] 2.6 Logout returns to `/login`; `/dashboard` no longer reachable
-- [ ] 2.7 Guest hitting `/dashboard` is redirected to `/login`
+- [x] 2.4 Full browser click-through: `/login` → email → link from log → `/dashboard` logged in
+- [x] 2.5 Layout usable at 320px width
+- [x] 2.6 Logout returns to `/login`; `/dashboard` no longer reachable
+- [x] 2.7 Guest hitting `/dashboard` is redirected to `/login`
 
 ### Phase 3: Acceptance suite + green gate
 

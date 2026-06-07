@@ -46,7 +46,8 @@ final class MagicLinkController extends Controller
         $token = $magicLink->issueFor($email);
         $user->notify(new MagicLinkNotification($email, $token));
 
-        return back()->with('status', 'Jeśli ten adres może się zalogować, wysłaliśmy na niego link.');
+        // Neutral confirmation page — identical for known and unknown emails.
+        return redirect()->route('login.sent');
     }
 
     /**
@@ -73,8 +74,7 @@ final class MagicLinkController extends Controller
         Auth::login($user);
         $request->session()->regenerate();
 
-        // Phase 2 swaps the fallback to the authenticated dashboard route.
-        return redirect()->intended('/');
+        return redirect()->intended(route('dashboard'));
     }
 
     /**
