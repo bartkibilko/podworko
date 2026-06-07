@@ -32,8 +32,13 @@ final class CreateNeighbourhoodCest
         $I->click('Zapisz osiedle');
 
         $I->seeInCurrentUrl('/dashboard');
-        $I->seeRecord('neighbourhoods', ['name' => 'Zielona Dolina', 'access_code' => $code]);
-        $I->seeRecord('memberships', ['user_id' => $user->id, 'role' => 'founder']);
+        $neighbourhood = $I->grabRecord('neighbourhoods', ['name' => 'Zielona Dolina', 'access_code' => $code]);
+        $I->seeRecord('memberships', [
+            'user_id' => $user->id,
+            'neighbourhood_id' => $neighbourhood['id'],
+            'role' => 'founder',
+            'household_id' => null,
+        ]);
         // Dashboard lists the new neighbourhood with its code.
         $I->see('Zielona Dolina');
         $I->see($code);

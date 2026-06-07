@@ -39,7 +39,7 @@ final class NeighbourhoodController extends Controller
     {
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:100'],
-            'access_code' => ['required', 'string', 'regex:/^[A-Z0-9]{1,6}$/', 'unique:neighbourhoods,access_code'],
+            'access_code' => ['required', 'string', 'regex:/^[A-Z0-9]{6}$/', 'unique:neighbourhoods,access_code'],
         ]);
 
         DB::transaction(function () use ($validated): void {
