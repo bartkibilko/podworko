@@ -8,6 +8,9 @@ modules:
         - Asserts
         - Laravel:
             environment_file: .env.testing
+            # First domain migration lands in F-02 (magic_links) — earlier than the
+            # F-01 placeholder anticipated. Tables are now required for DB-backed tests.
+            run_database_migrations: true
         - Db:
             dsn: 'pgsql:host=%DB_HOST%;dbname=%DB_DATABASE%'
             user: '%DB_USERNAME%'
