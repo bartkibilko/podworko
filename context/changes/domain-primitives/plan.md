@@ -201,35 +201,35 @@ Additive migrations only; no existing data. All `down()` drop cleanly. FKs use `
 
 #### Automated
 
-- [x] 1.1 Unit suite passes: `codecept run Unit`
-- [x] 1.2 Static analysis clean: `phpstan analyse --memory-limit=512M`
-- [x] 1.3 Code style clean: `pint --test`
+- [x] 1.1 Unit suite passes: `codecept run Unit` — a81d11f
+- [x] 1.2 Static analysis clean: `phpstan analyse --memory-limit=512M` — a81d11f
+- [x] 1.3 Code style clean: `pint --test` — a81d11f
 
 #### Manual
 
-- [x] 1.4 tinker: `Money(2500)->divide(3)` = `[833, 1]`; negative format sensible
+- [x] 1.4 tinker: `Money(2500)->divide(3)` = `[833, 1]`; negative format sensible — a81d11f
 
 ### Phase 2: Domain models, migrations, factories
 
 #### Automated
 
-- [x] 2.1 Migrations apply cleanly: `php artisan migrate`
-- [x] 2.2 Static analysis clean: `phpstan analyse --memory-limit=512M`
-- [x] 2.3 Code style clean: `pint --test`
+- [x] 2.1 Migrations apply cleanly: `php artisan migrate` — a81d11f
+- [x] 2.2 Static analysis clean: `phpstan analyse --memory-limit=512M` — a81d11f
+- [x] 2.3 Code style clean: `pint --test` — a81d11f
 
 #### Manual
 
-- [x] 2.4 tinker: factory graph neighbourhood→household→membership with role cast
+- [x] 2.4 tinker: factory graph neighbourhood→household→membership with role cast — a81d11f
 
 ### Phase 3: Functional tests + green gate
 
 #### Automated
 
-- [x] 3.1 Full suite passes: `codecept run`
-- [x] 3.2 Static analysis clean: `phpstan analyse --memory-limit=512M`
-- [x] 3.3 Code style clean: `pint --test`
+- [x] 3.1 Full suite passes: `codecept run` — a81d11f
+- [x] 3.2 Static analysis clean: `phpstan analyse --memory-limit=512M` — a81d11f
+- [x] 3.3 Code style clean: `pint --test` — a81d11f
 
 #### Manual
 
 - [ ] 3.4 CI run is green (phpstan + codecept)
-- [x] 3.5 No regression in F-02 auth suites
+- [x] 3.5 No regression in F-02 auth suites — a81d11f
