@@ -324,11 +324,11 @@ Single additive migration (`create_magic_links_table`); no existing data to migr
 
 #### Automated
 
-- [x] 3.1 Full suite passes: `codecept run`
-- [x] 3.2 Static analysis clean: `phpstan analyse --memory-limit=512M`
-- [x] 3.3 Code style clean: `pint --test`
+- [x] 3.1 Full suite passes: `codecept run` — 5139269
+- [x] 3.2 Static analysis clean: `phpstan analyse --memory-limit=512M` — 5139269
+- [x] 3.3 Code style clean: `pint --test` — 5139269
 
 #### Manual
 
-- [ ] 3.4 CI run on the PR is green (phpstan + codecept jobs)
-- [x] 3.5 No regression in the `/` welcome route
+- [x] 3.4 CI run on the PR is green (phpstan + codecept jobs) — 5139269
+- [x] 3.5 No regression in the `/` welcome route — 5139269
