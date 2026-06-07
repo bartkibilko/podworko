@@ -181,4 +181,4 @@ No new migrations — reuses F-03 schema. (`access_code` unique already exists.)
 
 #### Manual
 - [x] 2.4 Browser: create flow (name→preview→regenerate→save) → dashboard lists neighbourhood; usable at 320px (covered by Acceptance create-flow + mobile-first layout) — 1885166
-- [ ] 2.5 CI green
+- [x] 2.5 CI green — 14b07bc

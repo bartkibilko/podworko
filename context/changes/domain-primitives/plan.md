@@ -231,5 +231,5 @@ Additive migrations only; no existing data. All `down()` drop cleanly. FKs use `
 
 #### Manual
 
-- [ ] 3.4 CI run is green (phpstan + codecept)
+- [x] 3.4 CI run is green (phpstan + codecept) — 14b07bc
 - [x] 3.5 No regression in F-02 auth suites — a81d11f
