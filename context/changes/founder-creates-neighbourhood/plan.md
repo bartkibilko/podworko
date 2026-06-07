@@ -164,21 +164,21 @@ No new migrations — reuses F-03 schema. (`access_code` unique already exists.)
 ### Phase 1: Backend — generator, controller, membership, dashboard
 
 #### Automated
-- [x] 1.1 Migrations still apply: `php artisan migrate:status`
-- [x] 1.2 Unit + Functional pass: `codecept run Unit,Functional`
-- [x] 1.3 Static analysis clean: `phpstan analyse --memory-limit=512M`
-- [x] 1.4 Code style clean: `pint --test`
+- [x] 1.1 Migrations still apply: `php artisan migrate:status` — 1885166
+- [x] 1.2 Unit + Functional pass: `codecept run Unit,Functional` — 1885166
+- [x] 1.3 Static analysis clean: `phpstan analyse --memory-limit=512M` — 1885166
+- [x] 1.4 Code style clean: `pint --test` — 1885166
 
 #### Manual
-- [x] 1.5 tinker: `NeighbourhoodAccessCode::generate('Zielona Dolina')` → 6-char A-Z0-9, prefix ZIE, unique (covered by Functional generator test)
+- [x] 1.5 tinker: `NeighbourhoodAccessCode::generate('Zielona Dolina')` → 6-char A-Z0-9, prefix ZIE, unique (covered by Functional generator test) — 1885166
 
 ### Phase 2: UI + dynamic dashboard + Acceptance
 
 #### Automated
-- [x] 2.1 Full suite passes: `codecept run`
-- [x] 2.2 Static analysis clean: `phpstan analyse --memory-limit=512M`
-- [x] 2.3 Code style clean: `pint --test`
+- [x] 2.1 Full suite passes: `codecept run` — 1885166
+- [x] 2.2 Static analysis clean: `phpstan analyse --memory-limit=512M` — 1885166
+- [x] 2.3 Code style clean: `pint --test` — 1885166
 
 #### Manual
-- [x] 2.4 Browser: create flow (name→preview→regenerate→save) → dashboard lists neighbourhood; usable at 320px (covered by Acceptance create-flow + mobile-first layout)
+- [x] 2.4 Browser: create flow (name→preview→regenerate→save) → dashboard lists neighbourhood; usable at 320px (covered by Acceptance create-flow + mobile-first layout) — 1885166
 - [ ] 2.5 CI green
